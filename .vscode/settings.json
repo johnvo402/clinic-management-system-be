@@ -1,0 +1,9 @@
+{
+    "files.exclude":{
+        "**/bin": false,
+        "**/obj": false,
+        "**/.vs": true,
+        "**/backup": true,
+        "**/.husky": true
+    }
+}

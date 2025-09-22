@@ -1,0 +1,11 @@
+services:
+  auth:
+    # <<: *common_config
+    image: auth
+    volumes:
+      - ./logs:/logs
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Staging
+    build:
+      context: .
+      dockerfile: ./Dockerfile
