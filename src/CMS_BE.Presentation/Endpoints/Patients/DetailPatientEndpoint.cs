@@ -12,6 +12,7 @@ namespace CMS_BE.Presentation.Endpoints.Patients
             ApiResponse<PatientDetailResponse>
         >
     {
+        [HttpGet(Router.PatientRoute.GetUpdateDelete)]
         public override async Task<ActionResult<ApiResponse<PatientDetailResponse>>> HandleAsync(
             PatientDetailQuery request,
             CancellationToken cancellationToken = default

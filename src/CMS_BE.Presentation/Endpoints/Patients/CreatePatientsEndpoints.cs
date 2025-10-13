@@ -13,7 +13,6 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace CMS_BE.Presentation.Endpoints.Patients
 {
-    [ApiExplorerSettings(GroupName = "v1")]
     public class CreatePatientsEndpoints(ISender sender)
         : EndpointBaseAsync.WithRequest<CreatePatientCommand>.WithActionResult<ApiResponse>
     {

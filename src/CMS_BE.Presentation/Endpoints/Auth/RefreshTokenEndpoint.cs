@@ -16,7 +16,7 @@ namespace CMS_BE.Presentation.Endpoints.Auth
         [HttpPost(Router.AuthRoute.RefreshToken)]
         [SwaggerOperation(Tags = [Router.AuthRoute.AuthTags], Summary = "Logging in Account")]
         public override async Task<ActionResult<ApiResponse<RefreshTokenResponse>>> HandleAsync(
-            RefreshTokenCommand request,
+            [FromBody] RefreshTokenCommand request,
             CancellationToken cancellationToken = default
         )
         {

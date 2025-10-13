@@ -13,9 +13,13 @@ namespace CMS_BE.Presentation.Endpoints.Patients
             ApiResponse<PaginationResponse<ListPatientResponse>>
         >
     {
+        [HttpGet(Router.PatientRoute.GetList)]
         public override async Task<
             ActionResult<ApiResponse<PaginationResponse<ListPatientResponse>>>
-        > HandleAsync(ListPatientQuery request, CancellationToken cancellationToken = default)
+        > HandleAsync(
+            [FromQuery] ListPatientQuery request,
+            CancellationToken cancellationToken = default
+        )
         {
             var result = await sender.Send(request, cancellationToken);
             return result.ToActionResult();

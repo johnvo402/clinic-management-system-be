@@ -63,6 +63,13 @@ namespace CMS_BE.Application.Common.Extensions.QueryExtensions
                 if (isAndOperator != 0 && isOrOperator != 0 && propertyName.Contains('$'))
                 {
                     Expression left = paramOrMember;
+                    if (value == null)
+                    {
+                        throw new ArgumentNullException(
+                            nameof(value),
+                            "Filter value cannot be null"
+                        );
+                    }
                     return Compare(propertyName, left, value);
                 }
 

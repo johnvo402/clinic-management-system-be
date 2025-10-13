@@ -14,7 +14,7 @@ namespace CMS_BE.Presentation.Endpoints.Auth
         [HttpPost(Router.AuthRoute.Login)]
         [SwaggerOperation(Tags = [Router.AuthRoute.AuthTags], Summary = "Logging in Account")]
         public override async Task<ActionResult<ApiResponse<LoginResponse>>> HandleAsync(
-            LoginCommand request,
+            [FromBody] LoginCommand request,
             CancellationToken cancellationToken = default
         ) => (await sender.Send(request, cancellationToken)).ToActionResult();
     }

@@ -30,8 +30,7 @@ test:
 	./scripts/run_tests.sh ${TYPE} ${NAME} ${SERVICE}
 
 run:
-	./scripts/run-services.sh ${SERVICE}
-
+	dotnet run --project ./src/CMS_BE.Presentation/CMS_BE.Presentation.csproj
 
 # Mục để kiểm tra migration status
 status:

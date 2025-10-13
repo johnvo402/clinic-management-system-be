@@ -19,7 +19,7 @@ namespace CMS_BE.Presentation.Endpoints.Visits
         public override async Task<
             ActionResult<ApiResponse<PaginationResponse<ListVisitsByPatientResponse>>>
         > HandleAsync(
-            ListVisitsByPatientQuery request,
+            [FromQuery] ListVisitsByPatientQuery request,
             CancellationToken cancellationToken = default
         )
         {

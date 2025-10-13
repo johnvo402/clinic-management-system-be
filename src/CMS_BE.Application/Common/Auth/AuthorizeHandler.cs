@@ -2,16 +2,12 @@ using System.Text.Json;
 using CMS_BE.Application.Common.Interfaces.Services;
 using CMS_BE.Domain.Extensions;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CMS_BE.Application.Common.Auth
 {
-    public class AuthorizeHandler(
-        IServiceProvider serviceProvider,
-        ICurrentAccount currentUser,
-        IHttpContextAccessor _httpContextAccessor
-    ) : AuthorizationHandler<AuthorizationRequirement>
+    public class AuthorizeHandler(IServiceProvider serviceProvider, ICurrentAccount currentUser)
+        : AuthorizationHandler<AuthorizationRequirement>
     {
         private readonly IServiceProvider serviceProvider = serviceProvider;
 

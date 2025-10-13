@@ -12,7 +12,7 @@ namespace CMS_BE.Application.Errors
                     .GroupBy(x => x.PropertyName)
                     .Select(failureGroups => new InvalidParam
                     {
-                        PropertyName = failureGroups.Key,
+                        PropertyName = failureGroups.Key.ToLowerInvariant(),
                         Reasons = failureGroups.Select(failure =>
                         {
                             if (failure.ErrorMessage is string messageResult)

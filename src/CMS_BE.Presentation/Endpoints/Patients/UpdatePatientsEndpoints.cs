@@ -14,6 +14,7 @@ namespace CMS_BE.Presentation.Endpoints.Patients
     public class UpdatePatientsEndpoints(ISender sender)
         : EndpointBaseAsync.WithRequest<UpdatePatientCommand>.WithActionResult<ApiResponse>
     {
+        [HttpPut(Router.PatientRoute.GetUpdateDelete)]
         public override async Task<ActionResult<ApiResponse>> HandleAsync(
             UpdatePatientCommand request,
             CancellationToken cancellationToken = default
