@@ -107,7 +107,6 @@ namespace CMS_BE.Presentation.Routers
             new()
             {
                 Status = errorDetails.Status,
-                Title = errorDetails.Title,
                 Type = errorDetails.Type,
                 Extensions = new Dictionary<string, object?>
                 {

@@ -19,7 +19,7 @@ namespace CMS_BE.Application.Features.Humans.Visits.Commands.Delete
             if (visit is null)
             {
                 return Result.Failure(
-                    new NotFoundError("Không tìm thấy", "Không tìm thấy lần khám")
+                    new NotFoundError( "Không tìm thấy lần khám")
                 );
             }
 

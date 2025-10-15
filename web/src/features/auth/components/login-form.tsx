@@ -78,6 +78,9 @@ export function LoginForm() {
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {loginError && !errors.username && !errors.password && (
+            <p className="text-sm text-red-500">{loginError.message}</p>
+          )}
           <div className="space-y-2">
             <Label htmlFor="username">Tên đăng nhập</Label>
             <Input
@@ -110,9 +113,7 @@ export function LoginForm() {
               <p className="text-sm text-red-500">{errors.password}</p>
             )}
           </div>
-          {loginError && !errors.username && !errors.password && (
-            <p className="text-sm text-red-500">{loginError.message}</p>
-          )}
+
           <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading ? "Đang đăng nhập..." : "Đăng Nhập"}
           </Button>

@@ -25,7 +25,7 @@ namespace CMS_BE.Application.Features.Humans.Patients.Queries.Detail
             if (patient == null)
             {
                 return Result<PatientDetailResponse>.Failure(
-                    new NotFoundError("Không tìm thấy", "Không tìm thấy bệnh nhân")
+                    new NotFoundError( "Không tìm thấy bệnh nhân")
                 );
             }
             return Result<PatientDetailResponse>.Success(patient);

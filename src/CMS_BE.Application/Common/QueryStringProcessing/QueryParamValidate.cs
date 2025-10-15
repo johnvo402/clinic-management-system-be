@@ -1,8 +1,8 @@
 using System.Reflection;
 using CMS_BE.Application.Common.DTOs.Requests;
-using CMS_BE.Application.Errors;
 using CMS_BE.Application.Common.Extensions;
 using CMS_BE.Application.Common.Extensions.Reflections;
+using CMS_BE.Application.Errors;
 using CMS_BE.Domain.Extensions;
 using Serilog;
 
@@ -10,8 +10,6 @@ namespace CMS_BE.Application.Common.QueryStringProcessing
 {
     public static partial class QueryParamValidate
     {
-        private const string Message = "Tham số yêu cầu của bạn không được xác thực.";
-
         public static ValidationRequestResult<T, BadRequestError> ValidateQuery<T>(this T request)
             where T : QueryParamRequest
         {
@@ -54,7 +52,6 @@ namespace CMS_BE.Application.Common.QueryStringProcessing
                     );
                     return new(
                         Error: new BadRequestError(
-                            Message,
                             "Lỗi kiểm tra array operator ($and, $or, $in, $between)"
                         )
                     );
@@ -69,7 +66,6 @@ namespace CMS_BE.Application.Common.QueryStringProcessing
                     );
                     return new(
                         Error: new BadRequestError(
-                            Message,
                             "Lỗi kiểm tra index của array operator bắt đầu từ 0"
                         )
                     );
@@ -82,7 +78,7 @@ namespace CMS_BE.Application.Common.QueryStringProcessing
                         "ValidateLackOfOperator failed for {CleanKey}",
                         string.Join(".", query.CleanKey)
                     );
-                    return new(Error: new BadRequestError(Message, "Lỗi kiểm tra thiếu operator"));
+                    return new(Error: new BadRequestError("Lỗi kiểm tra thiếu operator"));
                 }
 
                 // Kiểm tra thiếu element sau logical operator
@@ -94,7 +90,6 @@ namespace CMS_BE.Application.Common.QueryStringProcessing
                     );
                     return new(
                         Error: new BadRequestError(
-                            Message,
                             "Lỗi kiểm tra thiếu element sau logical operator"
                         )
                     );
@@ -116,10 +111,7 @@ namespace CMS_BE.Application.Common.QueryStringProcessing
                         string.Join(".", query.CleanKey)
                     );
                     return new(
-                        Error: new BadRequestError(
-                            Message,
-                            "Lỗi kiểm tra thiếu property trong filter"
-                        )
+                        Error: new BadRequestError("Lỗi kiểm tra thiếu property trong filter")
                     );
                 }
 
@@ -139,7 +131,6 @@ namespace CMS_BE.Application.Common.QueryStringProcessing
                     );
                     return new(
                         Error: new BadRequestError(
-                            Message,
                             "Lỗi kiểm tra thuộc tính trong filter không tồn tại"
                         )
                     );
@@ -162,10 +153,7 @@ namespace CMS_BE.Application.Common.QueryStringProcessing
                             query.Value
                         );
                         return new(
-                            Error: new BadRequestError(
-                                Message,
-                                "Lỗi kiểm tra giá trị enum không hợp lệ"
-                            )
+                            Error: new BadRequestError("Lỗi kiểm tra giá trị enum không hợp lệ")
                         );
                     }
                     // Thay thế tên enum bằng giá trị số
@@ -188,9 +176,7 @@ namespace CMS_BE.Application.Common.QueryStringProcessing
                         string.Join(".", properties),
                         query.Value
                     );
-                    return new(
-                        Error: new BadRequestError(Message, "Lỗi kiểm tra giá trị số không hợp lệ")
-                    );
+                    return new(Error: new BadRequestError("Lỗi kiểm tra giá trị số không hợp lệ"));
                 }
 
                 // Kiểm tra giá trị datetime
@@ -208,10 +194,7 @@ namespace CMS_BE.Application.Common.QueryStringProcessing
                         query.Value
                     );
                     return new(
-                        Error: new BadRequestError(
-                            Message,
-                            "Lỗi kiểm tra giá trị ngày giờ không hợp lệ"
-                        )
+                        Error: new BadRequestError("Lỗi kiểm tra giá trị ngày giờ không hợp lệ")
                     );
                 }
 
@@ -224,10 +207,7 @@ namespace CMS_BE.Application.Common.QueryStringProcessing
                         query.Value
                     );
                     return new(
-                        Error: new BadRequestError(
-                            Message,
-                            "Lỗi kiểm tra giá trị Ulid không hợp lệ"
-                        )
+                        Error: new BadRequestError("Lỗi kiểm tra giá trị Ulid không hợp lệ")
                     );
                 }
             }
@@ -236,18 +216,14 @@ namespace CMS_BE.Application.Common.QueryStringProcessing
             if (!ValidateBetweenAndInOperator("$between", queries))
             {
                 Log.Error("Invalid $between operator format");
-                return new(
-                    Error: new BadRequestError(Message, "Lỗi kiểm tra $between operator format")
-                );
+                return new(Error: new BadRequestError("Lỗi kiểm tra $between operator format"));
             }
 
             // Kiểm tra $in operator
             if (!ValidateBetweenAndInOperator("$in", queries))
             {
                 Log.Error("Invalid $in operator format");
-                return new(
-                    Error: new BadRequestError(Message, "Lỗi kiểm tra $in operator format")
-                );
+                return new(Error: new BadRequestError("Lỗi kiểm tra $in operator format"));
             }
 
             // Kiểm tra trùng lặp filter
@@ -255,9 +231,7 @@ namespace CMS_BE.Application.Common.QueryStringProcessing
             if (trimQueries.Distinct().Count() != queries.Count)
             {
                 Log.Error("Duplicated filter elements found");
-                return new(
-                    Error: new BadRequestError(Message, "Lỗi kiểm tra filter bị trùng lặp")
-                );
+                return new(Error: new BadRequestError("Lỗi kiểm tra filter bị trùng lặp"));
             }
 
             // Gán filter đã xử lý

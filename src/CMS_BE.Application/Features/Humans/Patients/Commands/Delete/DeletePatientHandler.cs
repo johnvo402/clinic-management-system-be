@@ -20,9 +20,7 @@ namespace CMS_BE.Application.Features.Humans.Patients.Commands.Delete
                 .FindByIdAsync(id, cancellationToken);
             if (patient is null)
             {
-                return Result.Failure(
-                    new NotFoundError("Không tìm thấy", "Không tìm thấy bệnh nhân")
-                );
+                return Result.Failure(new NotFoundError("Không tìm thấy bệnh nhân"));
             }
 
             try

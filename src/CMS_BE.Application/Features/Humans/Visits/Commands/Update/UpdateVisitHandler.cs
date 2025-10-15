@@ -19,9 +19,7 @@ namespace CMS_BE.Application.Features.Humans.Visits.Commands.Update
             var visit = await unitOfWork.Repository<Visit>().FindByIdAsync(id, cancellationToken);
             if (visit is null)
             {
-                return Result.Failure(
-                    new NotFoundError("Không tìm thấy", "Không tìm thấy lần khám")
-                );
+                return Result.Failure(new NotFoundError("Không tìm thấy lần khám"));
             }
 
             visit.Symptoms = request.Model.Symptoms;

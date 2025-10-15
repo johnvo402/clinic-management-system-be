@@ -21,7 +21,6 @@ namespace CMS_BE.Infrastructure.Common.Token
 
             ProblemDetails problemDetails = new()
             {
-                Title = forbiddenError.Title,
                 Type = forbiddenError.Type,
                 Status = forbiddenError.Status,
                 Detail = forbiddenError.ErrorMessage,
@@ -51,7 +50,6 @@ namespace CMS_BE.Infrastructure.Common.Token
 
             ProblemDetails problemDetails = new()
             {
-                Title = unauthorizedError.Title,
                 Type = unauthorizedError.Type,
                 Status = unauthorizedError.Status,
                 Detail = unauthorizedError.ErrorMessage,

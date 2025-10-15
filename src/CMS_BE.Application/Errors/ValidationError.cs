@@ -6,7 +6,6 @@ namespace CMS_BE.Application.Errors
 {
     public class ValidationError(List<ValidationFailure> invalidParams)
         : ErrorDetails(
-            "The request parameters didn't validate.",
             [
                 .. invalidParams
                     .GroupBy(x => x.PropertyName)

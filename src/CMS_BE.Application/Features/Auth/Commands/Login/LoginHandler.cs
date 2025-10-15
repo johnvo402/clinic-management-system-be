@@ -27,18 +27,13 @@ namespace CMS_BE.Application.Features.Auth.Commands.Login
             if (account == null)
             {
                 return Result<LoginResponse>.Failure(
-                    new NotFoundError(
-                        "Không tìm thấy",
-                        "Tài khoản không tồn tại trong hệ thống."
-                    )
+                    new NotFoundError("Tài khoản không tồn tại trong hệ thống.")
                 );
             }
 
             if (!Verify(request.Password, account.PasswordHash))
             {
-                return Result<LoginResponse>.Failure(
-                    new BadRequestError("Sai thông tin đăng nhập", "Mật khẩu không đúng.")
-                );
+                return Result<LoginResponse>.Failure(new BadRequestError("Mật khẩu không đúng."));
             }
 
             string refreshToken = StringExtension.GenerateRandomString(64);

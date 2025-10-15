@@ -19,9 +19,7 @@ namespace CMS_BE.Application.Features.Humans.Visits.Commands.Create
                 .FindByIdAsync(request.PatientId, cancellationToken);
             if (patient is null)
             {
-                return Result.Failure(
-                    new NotFoundError("Không tìm thấy", "Không tìm thấy bệnh nhân")
-                );
+                return Result.Failure(new NotFoundError("Không tìm thấy bệnh nhân"));
             }
             var visit = request.ToEntity();
             patient.Visits.Add(visit);

@@ -35,7 +35,6 @@ namespace CMS_BE.Presentation.Middlewares
 
                 var problemDetails = new ProblemDetails
                 {
-                    Title = validationError.Title,
                     Type = validationError.Type,
                     Status = validationError.Status,
                     Detail = validationError.ErrorMessage,

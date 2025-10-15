@@ -32,10 +32,7 @@ namespace CMS_BE.Application.Features.Auth.Commands.RefreshToken
             if (refresh == null)
             {
                 return Result<RefreshTokenResponse>.Failure(
-                    new BadRequestError(
-                        "Token không hợp lệ",
-                        "Token không hợp lệ hoặc đã hết hạn."
-                    )
+                    new BadRequestError("Token không hợp lệ hoặc đã hết hạn.")
                 );
             }
 

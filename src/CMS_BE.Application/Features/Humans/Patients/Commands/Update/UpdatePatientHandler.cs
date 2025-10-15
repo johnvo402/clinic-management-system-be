@@ -21,7 +21,7 @@ namespace CMS_BE.Application.Features.Humans.Patients.Commands.Update
             if (patient is null)
             {
                 return Result.Failure(
-                    new NotFoundError("Không tìm thấy", "Không tìm thấy bệnh nhân")
+                    new NotFoundError( "Không tìm thấy bệnh nhân")
                 );
             }
 

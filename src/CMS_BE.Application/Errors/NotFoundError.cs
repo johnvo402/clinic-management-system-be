@@ -3,6 +3,6 @@ using Microsoft.AspNetCore.Http;
 
 namespace CMS_BE.Application.Errors
 {
-    public class NotFoundError(string title, string message)
-        : ErrorDetails(title, message, nameof(NotFoundError), StatusCodes.Status404NotFound);
+    public class NotFoundError(string message)
+        : ErrorDetails(message, nameof(NotFoundError), StatusCodes.Status404NotFound);
 }

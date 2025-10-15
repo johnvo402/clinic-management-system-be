@@ -3,11 +3,6 @@ using Microsoft.AspNetCore.Http;
 
 namespace CMS_BE.Application.Errors
 {
-    public class BadRequestError(string title, string messageResult)
-        : ErrorDetails(
-            title,
-            messageResult,
-            nameof(BadRequestError),
-            StatusCodes.Status400BadRequest
-        );
+    public class BadRequestError(string messageResult)
+        : ErrorDetails(messageResult, nameof(BadRequestError), StatusCodes.Status400BadRequest);
 }
